@@ -1,4 +1,3 @@
-how to disable scroll only on iframe
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,47 +5,64 @@ how to disable scroll only on iframe
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HubKerja</title>
   <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/016/716/181/large_2x/website-3d-icon-png.png" type="image/x-icon">
+  
+  <!-- Bootstrap for Progress Bar -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow-y: auto; /* ✅ enables scroll */
-      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
       font-family: sans-serif;
     }
+
     .iframe-container {
       position: relative;
       width: 100%;
       min-height: 100vh;
-	  overflow: hidden;
     }
+
     iframe {
       width: 100%;
-      height: 100vh; /* keep fixed height if desired */
+      height: 100vh;
       border: none;
-	  overflow: hidden;
+      overflow: hidden;
+      pointer-events: auto;
     }
-    .loader {
+
+    .progress {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.2rem;
-      color: #666;
-      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      z-index: 9999;
+    }
+
+    .progress-bar {
+      background-color: #007bff;
+      transition: width 0.4s ease;
     }
   </style>
 </head>
 <body>
   <div class="iframe-container">
-    <div class="loader" id="loader">Loading...</div>
+    <!-- Progress bar -->
+    <div class="progress">
+      <div class="progress-bar" id="loader" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
+    <!-- Iframe -->
     <iframe
       src="https://script.google.com/macros/s/AKfycbwzrDPwFjsJ_MgBdLp2AY-0yeGLU9kLITmhVDi6YE_8ATfEDnW9-rLMxyTf1mUhIh9G/exec" 
       title="HubKerja"
-      onload="document.getElementById('loader').style.display='none';"
+      scrolling="no"
+      onload="document.getElementById('loader').style.display = 'none';"
       allowfullscreen>
     </iframe>
+	
   </div>
 </body>
 </html>
