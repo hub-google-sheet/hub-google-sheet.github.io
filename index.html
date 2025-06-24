@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow-y: auto; /* ✅ enables scroll */
+      overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       font-family: sans-serif;
     }
@@ -21,8 +21,10 @@
     }
     iframe {
       width: 100%;
-      height: 100vh; /* keep fixed height if desired */
+      height: 100vh;
       border: none;
+	  overflow: hidden;
+	  pointer-events: auto;
     }
     .loader {
       position: absolute;
@@ -37,10 +39,13 @@
 </head>
 <body>
   <div class="iframe-container">
-    <div class="loader" id="loader">Loading...</div>
+   <div class="w3-light-grey">
+    <div class="loader" id=loader style="height:24px;width:75%"></div>
+   </div>	
     <iframe
       src="https://script.google.com/macros/s/AKfycbwzrDPwFjsJ_MgBdLp2AY-0yeGLU9kLITmhVDi6YE_8ATfEDnW9-rLMxyTf1mUhIh9G/exec" 
       title="HubKerja"
+	  scrolling="no"
       onload="document.getElementById('loader').style.display='none';"
       allowfullscreen>
     </iframe>
